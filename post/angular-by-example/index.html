@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Angular by example | Teopeurt&#39;s Blog
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.teopeurt.com/post/angular-by-example/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://blog.teopeurt.com/index.xml" rel="alternate" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+  <link href="http://blog.teopeurt.com/index.xml" rel="feed" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://blog.teopeurt.com/">Teopeurt&#39;s Blog</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Angular by example</h1>
+      <div class="meta">
+        Feb 24, 2016 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h1 id="environment-setup:33e68cecf32be79d1a30ee91889a835d">Environment Setup</h1>
+
+<p>Use NVM
+Use Node js</p>
+
+<h2 id="scaffold-a-webapp-with-yeoman:33e68cecf32be79d1a30ee91889a835d">Scaffold a WebApp with YeoMan</h2>
+
+<p>source <a href="http://yeoman.io/codelab/">YeoMan Guide</a> and <a href="http://yeoman.io/codelab/meet-yeoman.html">Meet Yeoman</a></p>
+
+<p>Install yo, grunt-cli, bower, generator-angular and generator-karma</p>
+
+<pre><code>npm install -g grunt-cli bower yo generator-karma generator-angular
+</code></pre>
+
+<p>I am opinionated in how I use Ruby in my system. I use <a href="https://github.com/rbenv/rbenv#installation">rbenv</a> and <a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a></p>
+
+<p>Install the compass gem:</p>
+
+<pre><code>gem install compass
+</code></pre>
+
+<p>Either clone my github page or if you really want to learn, do it from scratch.</p>
+
+<pre><code>mkdir my-angular-project &amp;&amp; cd $_
+</code></pre>
+
+<p>Run <code>yo angular</code> , optionally passing in an app name:</p>
+
+<pre><code>yo angular [app-name]
+</code></pre>
+
+<p>Go through the options</p>
+
+<pre><code>1. Choose Grunt
+2. Use Sass
+3. Include Bootstrap
+4. Use Sass version of Bootstrap
+5. Choose Angular modules needed
+6. Profit
+</code></pre>
+
+<p>Now run the initial app with <code>grunt serve</code> .</p>
+
+<pre><code>grunt serve
+</code></pre>
+
+<p>This should automatically open a browser window</p>
+
+<p>I always use source control</p>
+
+<pre><code>git init
+git add .
+git commit -am &quot;initial project commit&quot;
+</code></pre>
+
+<p>Now lets do some actual work..</p>
+
+<hr />
+
+<h1 id="basic-project:33e68cecf32be79d1a30ee91889a835d">Basic Project</h1>
+
+<p>Open <code>app/index.html</code></p>
+
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+.
+.
+.
+  &lt;/head&gt;
+  &lt;body ng-app=&quot;myAngularProjectApp&quot;&gt;
+.
+.
+.
+
+    &lt;div class=&quot;container&quot;&gt;
+    &lt;div ng-view=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+.
+.
+.
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<ul>
+<li>what does [ng-app]() do, is it an angular or custom directive?</li>
+<li>what does [ng-view]() do, is it an angular or custom directive?</li>
+</ul>
+
+<p>open <code>app/script.js</code></p>
+
+<pre><code class="language-javascript">'use strict';
+
+/**
+ * @ngdoc overview
+ * @name myAngularProjectApp
+ * @description
+ * # myAngularProjectApp
+ *
+ * Main module of the application.
+ */
+angular
+  .module('myAngularProjectApp', [
+    'ngAnimate',
+    'ngAria',
+    'ngCookies',
+    'ngMessages',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch'
+  ])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  });
+</code></pre>
+
+<p>we can see [$routeprovider]() function - what does it do?</p>
+
+<p>Ahh - welcome back, so basically read <code>when</code> in the <code>root</code> url <code>'/'</code>, render <code>views/main.html</code>, derived from <code>templateUrl</code>, define controller and aliases.</p>
+
+<p>Brilliant, thus let&rsquo;s see this beauty in action.</p>
+
+<p>Open <code>app/views/main.html</code> and replace with this</p>
+
+<pre><code class="language-html">    &lt;div class=&quot;jumbotron&quot;&gt;
+      &lt;h1&gt;Bitcoin Investment&lt;br&gt;Calculator&lt;/h1&gt;
+      &lt;br&gt;
+      &lt;h3&gt;How many Bitcoins do you have?&lt;/h3&gt;
+      &lt;!-- model --&gt;
+      &lt;input type=&quot;number&quot; ng-model=&quot;somenumber&quot; placeholder=&quot;20&quot;&gt;
+      &lt;br&gt;&lt;br&gt;
+      &lt;h4&gt;You have &lt;span class=&quot;number&quot;&gt;{{ somenumber }}&lt;/span&gt; Bitcoins - nice!&lt;/h4&gt;
+    &lt;/div&gt;
+</code></pre>
+
+<p>Lets look at the diff</p>
+
+<pre><code class="language-diff"> &lt;div class=&quot;jumbotron&quot;&gt;
+-  &lt;h1&gt;'Allo, 'Allo!&lt;/h1&gt;
+-  &lt;p class=&quot;lead&quot;&gt;
+-    &lt;img src=&quot;images/yeoman.png&quot; alt=&quot;I'm Yeoman&quot;&gt;&lt;br&gt;
+-    Always a pleasure scaffolding your apps.
+-  &lt;/p&gt;
+-  &lt;p&gt;&lt;a class=&quot;btn btn-lg btn-success&quot; ng-href=&quot;#/&quot;&gt;Splendid!&lt;span class=&quot;glyphicon glyphicon-ok&quot;&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+-&lt;/div&gt;
+-
+-&lt;div class=&quot;row marketing&quot;&gt;
+-  &lt;h4&gt;HTML5 Boilerplate&lt;/h4&gt;
+-  &lt;p&gt;
+-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+-  &lt;/p&gt;
+-
+-  &lt;h4&gt;Angular&lt;/h4&gt;
+-  &lt;p&gt;
+-    AngularJS is a toolset for building the framework most suited to your application development.
+-  &lt;/p&gt;
+-
+-  &lt;h4&gt;Karma&lt;/h4&gt;
+-  &lt;p&gt;Spectacular Test Runner for JavaScript.&lt;/p&gt;
++      &lt;h1&gt;Bitcoin Investment&lt;br&gt;Calculator&lt;/h1&gt;
++      &lt;br&gt;
++      &lt;h3&gt;How many Bitcoins do you have?&lt;/h3&gt;
++      &lt;!-- model --&gt;
++      &lt;input type=&quot;number&quot; ng-model=&quot;somenumber&quot; placeholder=&quot;20&quot;&gt;
++      &lt;br&gt;&lt;br&gt;
++      &lt;h4&gt;You have &lt;span class=&quot;number&quot;&gt;{{ somenumber }}&lt;/span&gt; Bitcoins - nice!&lt;/h4&gt;
+ &lt;/div&gt;
+</code></pre>
+
+<p>-Defining a model
+Here we are defining the [ng-model]() in the input box as the <code>ng-model=&quot;someumber&quot;</code>. By doing so, we have bound the value within the input box to the model, so when the input value changes, Angular automatically updates the model. This is [two-way-binding]() in action.</p>
+
+<p>-Using a model
+We wrap the model value, <code>somenumber</code> in double curly braces, this is an example of Angular service component [interpolate]() The double curly brace notation {{ }} to bind expressions to elements is built-in Angular markup</p>
+
+<p><a href="https://code.angularjs.org/1.5.0/docs/api/ng/provider/SinterpolateProvider">source</a></p>
+
+<h2 id="module-and-controllers:33e68cecf32be79d1a30ee91889a835d">Module and Controllers</h2>
+
+<h3 id="controllers:33e68cecf32be79d1a30ee91889a835d">Controllers</h3>
+
+<p>Controllers are &lsquo;classes or &lsquo;constructor functions&rsquo;</p>
+
+<p>Going back to <code>app/scripts/app/js</code> note this</p>
+
+<pre><code class="language-javascript">.when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
+</code></pre>
+
+<p>note that for the <code>main.html</code> a controller is defined <code>MainCtrl</code>. This has already been generated by yeoman - so go ahead and open <code>app/scripts/controllers/main.js</code>.
+Is there anything special about the name? How did we get to inject this into our app?</p>
+
+<pre><code class="language-html">        &lt;script src=&quot;scripts/app.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;scripts/controllers/main.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;scripts/controllers/about.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>So the name we created.. whats important is the content..</p>
+
+<pre><code class="language-javascript">angular.module('myAngularProjectApp')
+  .controller('MainCtrl', function () {
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+  });
+</code></pre>
+
+<p>We define a controller constructor function <code>MainCtrl</code> within our module <code>myAngularProjectApp</code> . Note that we have actually created a directive in our App.js when we defined a templateUrl and controller, this is a major source of confusion with Angular js beginners as there a more than one of <code>doing things</code>.</p>
+
+<p>We could easily have defined our controller within our index.html</p>
+
+<pre><code>&lt;html ng-app=&quot;myAngularProjectApp&quot; ng-controller=&quot;MainCtrl&quot;&gt;
+</code></pre>
+
+<p>But this is inextensible and makes it difficult to extend our app.</p>
+
+<p>Replace mainjs with this</p>
+
+<pre><code class="language-javascript">angular.module('myAngularProjectApp')
+  .controller('MainCtrl', ['$scope', function ($scope) {
+       // attaching 0 to the DOM
+      $scope.somenumber = 320;
+  }]);
+</code></pre>
+
+<p>You should have Grunt running to detect changes so once saved, the screen should refresh and update.
+Notice the usage of $scope, Angular uses a lot of DI Dependency Injection <a href="https://docs.angularjs.org/guide/di">DI</a>, it generally takes this shape for controllers:</p>
+
+<pre><code class="language-javascript">someModule.controller('MyController', ['$scope', 'dep1', 'dep2', function($scope, dep1, dep2) {
+  ...
+  $scope.aMethod = function() {
+    ...
+  }
+  ...
+}]);
+</code></pre>
+
+<p>Go read more on <a href="https://docs.angularjs.org/guide/scope">scopes</a>. Controllers are always generally associated with an element in the DOM (the V and C in MVC) and are thus provided with a scope.</p>
+
+<h3 id="changes:33e68cecf32be79d1a30ee91889a835d">Changes</h3>
+
+<p>app/scripts/controllers/main.js</p>
+
+<pre><code class="language-diff">@@ -8,7 +8,19 @@
+  * Controller of the myAngularProjectApp
+  */
+ angular.module('myAngularProjectApp')
+-  .controller('MainCtrl', ['$scope', function ($scope) {
+-       // attaching 0 to the DOM
+-      $scope.somenumber = 320;
+-  }]);
++  .controller('MainCtrl', function ($scope, $http) {
++          
++     // calling the api, grabbing the value for USD, appending it to the dom
++     $http.get(&quot;https://bitpay.com/api/rates&quot;)
++          .success(function(data){
++            $scope.rates = data;
++            for(var i=0;i&lt;data.length;i++){
++              if (data[i].code == &quot;USD&quot;){
++                $scope.currRate = data[i].rate;
++              }
++            }
++            $scope.initalAmt  = 5000;
++            $scope.newAmt     = function(price){return price/$scope.currRate * $scope.initalAmt;}
++            $scope.profit     = function(price){return price/$scope.currRate * $scope.initalAmt - $scope.initalAmt;}
++      });      
++  });
+</code></pre>
+
+<p>Looking at app/views/main.html</p>
+
+<pre><code class="language-diff">@@ -1,9 +1,58 @@
+ &lt;div class=&quot;jumbotron&quot;&gt;
+-      &lt;h1&gt;Bitcoin Investment&lt;br&gt;Calculator&lt;/h1&gt;
+-      &lt;br&gt;
+-      &lt;h3&gt;How many Bitcoins do you have?&lt;/h3&gt;
+-      &lt;!-- model --&gt;
+-      &lt;input type=&quot;number&quot; ng-model=&quot;somenumber&quot; placeholder=&quot;20&quot;&gt;
+-      &lt;br&gt;&lt;br&gt;
+-      &lt;h4&gt;You have &lt;span class=&quot;number&quot;&gt;{{ somenumber }}&lt;/span&gt; Bitcoins - nice!&lt;/h4&gt;
++
++      &lt;div class=&quot;row&quot;&gt;
++        &lt;div class=&quot;col-sm-12&quot;&gt;
++          &lt;h1&gt;Bitcoin Investment Calculator&lt;/h1&gt;
++          &lt;br&gt;&lt;br&gt;
++          &lt;form role=&quot;form&quot;&gt;
++            &lt;label for=&quot;starting-investment&quot;&gt;Initial Investment (USD)&lt;/label&gt;
++            &lt;input type=&quot;number&quot; ng-model=&quot;initalAmt&quot; class=&quot;form-control&quot; placeholder=&quot;{{initalAmt}}&quot;&gt;
++          &lt;/form&gt;
++          &lt;br&gt;
++          &lt;p&gt;Current Price (USD): &lt;span class=&quot;number&quot;&gt;{{currRate | currency }}&lt;/span&gt;&lt;/p&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++      &lt;div class=&quot;row&quot;&gt;
++        &lt;div class=&quot;col-sm-12&quot;&gt;
++          &lt;br&gt;&lt;br&gt;
++          &lt;table class=&quot;table table-bordered&quot;&gt;
++            &lt;thead&gt;
++              &lt;tr&gt;
++                &lt;th&gt;Price of 1 BTC&lt;/th&gt;
++                &lt;th&gt;Starting Investment&lt;/th&gt;
++                &lt;th&gt;Profit&lt;/th&gt;
++              &lt;/tr&gt;
++            &lt;/thead&gt;
++              &lt;tbody&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;$1,000&lt;/td&gt;
++                  &lt;td&gt;{{ newAmt(1000) | currency }}&lt;/td&gt;
++                  &lt;td&gt;{{ profit(1000) | currency }}&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;$5,000&lt;/td&gt;
++                  &lt;td&gt;{{ newAmt(5000) | currency }}&lt;/td&gt;
++                  &lt;td&gt;{{ profit(5000) | currency }}&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;$10,000&lt;/td&gt;
++                  &lt;td&gt;{{ newAmt(10000) | currency }}&lt;/td&gt;
++                  &lt;td&gt;{{ profit(10000) | currency }}&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;$25,000&lt;/td&gt;
++                  &lt;td&gt;{{ newAmt(25000) | currency }}&lt;/td&gt;
++                  &lt;td&gt;{{ profit(25000) | currency }}&lt;/td&gt;
++                &lt;/tr&gt;
++                &lt;tr&gt;
++                  &lt;td&gt;$50,000&lt;/td&gt;
++                  &lt;td&gt;{{ newAmt(50000) | currency }}&lt;/td&gt;
++                  &lt;td&gt;{{ profit(50000) | currency }}&lt;/td&gt;
++                &lt;/tr&gt;
++              &lt;/tbody&gt;
++          &lt;/table&gt;
++          &lt;span&gt;* IF the price of 1 Bitcoin reaches X, THEN your starting investment becomes X AND your profit becomes X.&lt;/span&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++
+ &lt;/div&gt;
+</code></pre>
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">Love</a>.</p>
+</blockquote>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://blog.teopeurt.com/projects/" rel="prev">Projects</a></span>
+    
+    
+      <span class="next"><a href="http://blog.teopeurt.com/post/programming-myths/" rel="next">Programming myths</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

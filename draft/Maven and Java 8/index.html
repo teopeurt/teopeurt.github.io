@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+     | Teopeurt&#39;s Blog
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.teopeurt.com/draft/Maven%20and%20Java%208/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://blog.teopeurt.com/index.xml" rel="alternate" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+  <link href="http://blog.teopeurt.com/index.xml" rel="feed" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://blog.teopeurt.com/">Teopeurt&#39;s Blog</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1></h1>
+      <div class="meta">
+        Jan 1, 0001 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h1 id="maven-and-java-8:112ba8f0a8483f2c172eda71f896fd60">Maven and Java 8</h1>
+
+<p>By default, Maven doesnt compile to Java 8 (1.8) - it defaults to 1.5. This means one has to place this inside the Pom.xml</p>
+
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+
+&lt;build&gt;
+         &lt;plugins&gt;
+
+             &lt;plugin&gt;
+                 &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                 &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                 &lt;version&gt;3.3&lt;/version&gt;
+                 &lt;configuration&gt;
+                     &lt;source&gt;1.8&lt;/source&gt;
+                     &lt;target&gt;1.8&lt;/target&gt;
+                 &lt;/configuration&gt;
+             &lt;/plugin&gt;
+         &lt;/plugins&gt;
+&lt;/build&gt;
+
+&lt;/project&gt;    
+</code></pre>
+
+<p>This solved my problem for command line builds.</p>
+
+<h2 id="intellij-config:112ba8f0a8483f2c172eda71f896fd60">Intellij Config</h2>
+
+<ul>
+<li>Project SDK</li>
+<li>IDE Compile</li>
+<li>etc</li>
+</ul>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://blog.teopeurt.com/draft/Mobile%20Money%20Policy%20Framework-%20A%20failure/" rel="prev"></a></span>
+    
+    
+      <span class="next"><a href="http://blog.teopeurt.com/draft/MTN%20vs%20Smile/" rel="next"></a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

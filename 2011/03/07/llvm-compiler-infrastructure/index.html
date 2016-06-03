@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    LLVM - What is it? | Teopeurt&#39;s Blog
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.teopeurt.com/2011/03/07/llvm-compiler-infrastructure/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://blog.teopeurt.com/index.xml" rel="alternate" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+  <link href="http://blog.teopeurt.com/index.xml" rel="feed" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://blog.teopeurt.com/">Teopeurt&#39;s Blog</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>LLVM - What is it?</h1>
+      <div class="meta">
+        Mar 7, 2011 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>What is LLVM? It&rsquo;s homepage is somewhat cryptic - spends the first paragraph telling people what it is NOT!</p>
+
+<p><a title="LLVM" href="http://www.llvm.org/">llvm</a></p>
+
+<p>In POE - it is used to build compilers - that means you can invent your own language, and use LLVM build the compiler and intepreter for you - voila!</p>
+
+<p>The abstract from the original paper by Chris is more enlightening:
+<pre>This paper describes LLVM (Low Level Virtual Machine),
+a compiler framework designed to support transparent,
+lifelong program analysis and transformation for arbitrary programs,
+by providing high-level information to compiler
+transformations at compile-time, link-time, run-time, and in
+idle time between runs. LLVM deﬁnes a common, low-level
+code representation in Static Single Assignment (SSA) form,
+with several novel features: a simple, language-independent
+type-system that exposes the primitives commonly used to
+implement high-level language features; an instruction for
+typed address arithmetic; and a simple mechanism that can
+be used to implement the exception handling features of
+high-level languages (and setjmp/longjmp in C) uniformly
+and eﬃciently. The LLVM compiler framework and code
+representation together provide a combination of key capabilities
+that are important for practical, lifelong analysis and
+transformation of programs. To our knowledge, no existing
+compilation approach provides all these capabilities. We describe
+the design of the LLVM representation and compiler
+framework, and evaluate the design in three ways: (a) the
+size and eﬀectiveness of the representation, including the
+type information it provides; (b) compiler performance for
+several interprocedural problems; and &copy; illustrative examples of the
+beneﬁts LLVM provides for several challenging
+compiler problems.</pre>
+&hellip;er. Ok for those who are still wondering what it is - check out Chris&rsquo; presentation at <a title="llvm fosdem" href="http://llvm.org/pubs/2011-02-FOSDEM-LLVMAndClang.html">FOSDEM</a> - (did I tell you I also presented at <a title="The McDonalds Model" href="http://blindfoldedarcher.com/the-mcdonalds-model/">FOSDEM</a> this year - my claim to fame! )</p>
+
+<p>Even Google is using LLVM in Android - check out <a title="RenderScript" href="http://developer.android.com/guide/topics/renderscript/index.html" target="_blank">RenderScript</a> (beautiful stuff!!).</p>
+
+<p>I still love GCC, but I will not ignore it&rsquo;s shortcomings. As an engineer, we should strive to understand our tools especially it&rsquo;s limitation</p>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://blog.teopeurt.com/2011/02/01/the-mcdonalds-model/" rel="prev">The McDonalds Model</a></span>
+    
+    
+      <span class="next"><a href="http://blog.teopeurt.com/2011/06/01/chronos-beagleboard/" rel="next">Chronos and BeagleBoard/Pandaboard</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

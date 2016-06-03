@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Making an EPUB Reader for Cocoa | Teopeurt&#39;s Blog
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.teopeurt.com/2012/09/03/making-an-epub-reader-for-cocoa/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://blog.teopeurt.com/index.xml" rel="alternate" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+  <link href="http://blog.teopeurt.com/index.xml" rel="feed" type="application/rss+xml" title="Teopeurt&#39;s Blog" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://blog.teopeurt.com/">Teopeurt&#39;s Blog</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Making an EPUB Reader for Cocoa</h1>
+      <div class="meta">
+        Sep 3, 2012 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>Source: <a href="http://stackoverflow.com/questions/1388467/reading-epub-format">http://stackoverflow.com/questions/1388467/reading-epub-format</a></p>
+
+<p>The EPUB format brings together a bunch of different specifications / formats:</p>
+
+<p>one to say what the content of the book should look like (a subset of XHTML 1.1 + CSS)
+one to define a &ldquo;manifest&rdquo; that lists all of the files that make up that content (OPF, which is an XML file)
+one to define how everything is packaged up (OEBPS: a zip file of everything in the manifest plus a few extra files)
+The specs look a bit daunting but actually once you&rsquo;ve got the basics (unzipping, parsing XML) down it&rsquo;s not particularly difficult or complex.</p>
+
+<p>You&rsquo;ll need to work out how to download the EPUB, to unzip it somewhere, to parse the manifest and then to display the relevant content.</p>
+
+<p>Some pointers if you&rsquo;re just starting out:</p>
+
+<ul>
+<li>parse xml</li>
+<li>unzip</li>
+<li>To display content just use a UIWebView for now.</li>
+</ul>
+
+<p>Here&rsquo;s a high level step by step for your code:</p>
+
+<p>1) create a view with a UIWebView</p>
+
+<p>2) download the EPUB file</p>
+
+<p>3) unzip it to a subdirectory in your app&rsquo;s documents folder using the zip library, linked above</p>
+
+<p>4) parse the XML file at META-INF/container.xml (if this file doesn&rsquo;t exist the EPUB is invalid) using TBXML, linked above</p>
+
+<p>5) In this XML, find the first &ldquo;rootfile&rdquo; with media-type application/oebps-package+xml. This is the OPF file for the book.</p>
+
+<p>6) parse the OPF file (also XML)</p>
+
+<p>7) now you need to know what the first chapter of the book is.</p>
+
+<p>a) each <item> in the <manifest> element has an id and an href. Store these in an NSDictionary where the key is the id and the object is the href.</p>
+
+<p>b) Look at the first <itemref> in the <spine>. It has an idref attribute which corresponds to one of the ids in (a). Look up that id in the NSDictionary and you&rsquo;ll get an href.</p>
+
+<p>c) this is the the file of the first chapter to show the user. Work out what the full path is (hint: it&rsquo;s wherever you unzipped the zip file to in (3) plus the base directory of the OPF file in (6))</p>
+
+<p>8) create an NSURL using fileURLWithPath:, where the path is the full path from (7c). Load this request using the UIWebView you created in (1).</p>
+
+<p>You&rsquo;ll need to implement forward / backward buttons or swipes or something so that users can move from one chapter to another. Use the <spine> to work out which file to show next - the <itemrefs> in the XML are in the order they should appear to the reader.</p>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://blog.teopeurt.com/2012/08/16/mapbox-mapping-tech/" rel="prev">MapBox - Mapping Tech</a></span>
+    
+    
+      <span class="next"><a href="http://blog.teopeurt.com/2012/09/03/dns-service-providers/" rel="next">DNS Service Providers</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+
